@@ -6,12 +6,26 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_login import login_user, current_user, logout_user, login_required,UserMixin
+import urllib, pyodbc
 import os
 
 
+# app = Flask(__name__)
+# app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+
+
+
+
+params = urllib.parse.quote_plus("DRIVER={SQL Server};SERVER=tcp:taskmanagementwithflaskdbserver.database.windows.net;PORT=1433;DATABASE=TaskSchedulerWithFlaskDB;UID=master;PWD=Appl1cati)n!")
+
+# Initialize application with URI for Azure DB
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
