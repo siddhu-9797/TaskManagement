@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'TaskSchedulerWithFlask'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5D637C1547E84A9BA11126601CE4492C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1A3DC23978E94A4EA4F8D45750CF1043 }}
