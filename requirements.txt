@@ -28,6 +28,7 @@ pycparser==2.21
 pylint==2.12.2
 pylint-flask==0.6
 pylint-plugin-utils==0.7
+pyodbc==4.0.32
 pyOpenSSL==21.0.0
 pyperclip==1.8.2
 selenium==4.1.0
