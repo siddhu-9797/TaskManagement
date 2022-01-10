@@ -18,7 +18,7 @@ import os
 
 
 
-params = urllib.parse.quote_plus("DRIVER={ODBC Driver 13 for SQL Server};SERVER=tcp:taskmanagementwithflaskdbserver.database.windows.net;PORT=1433;DATABASE=TaskSchedulerWithFlaskDB;UID=master;PWD=Appl1cati)n!")
+params = urllib.parse.quote_plus("DRIVER={ODBC Driver 17 for SQL Server};SERVER=tcp:taskmanagementwithflaskdbserver.database.windows.net;PORT=1433;DATABASE=TaskSchedulerWithFlaskDB;UID=master;PWD=Appl1cati)n!")
 
 # Initialize application with URI for Azure DB
 app = Flask(__name__)
