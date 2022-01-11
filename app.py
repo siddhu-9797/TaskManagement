@@ -10,13 +10,7 @@ import urllib, pyodbc
 import os
 
 
-# app = Flask(__name__)
-# app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-
-
-
-
+# Use connection strings to connect with Azure SQL Database
 
 params = urllib.parse.quote_plus("DRIVER={ODBC Driver 17 for SQL Server};SERVER=tcp:taskmanagementwithflaskdbserver.database.windows.net;PORT=1433;DATABASE=TaskSchedulerWithFlaskDB;UID=master;PWD=Appl1cati)n!")
 
@@ -35,9 +29,10 @@ login_manager.login_message_category = 'info'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
+# Finally connect Azure DB with SQLAlchemy
 db = SQLAlchemy(app)
 
+# Create User Account Table
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -53,7 +48,7 @@ class User(db.Model, UserMixin):
 
 
 
-
+# Create user Posts Table
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -71,6 +66,8 @@ class Post(db.Model):
     
     def __repr__(self):
         return f"Post('{self.title}')"
+
+# create all the above tables
 db.create_all()
 
 
@@ -147,6 +144,8 @@ def home():
                 
     l = len(tasks)
     return render_template('home.html', tasks= tasks, i=1, l=l, branc = branc)
+
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     frm = Rgsterfom()
